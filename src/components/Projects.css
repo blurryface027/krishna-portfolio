@@ -1,0 +1,60 @@
+/* PROJECTS */
+#projects {
+  padding: 8rem 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 1.5rem;
+  margin-top: 4rem;
+}
+.project-card {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  cursor: none;
+  transition: border-color 0.3s, transform 0.3s;
+}
+.project-card::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+}
+.project-card:hover { border-color: rgba(0,212,255,0.3); transform: translateY(-5px); }
+.project-card:hover::after { transform: scaleX(1); }
+.project-num {
+  font-family: var(--font-mono); font-size: 0.65rem;
+  color: var(--text-dim); letter-spacing: 0.2em;
+  margin-bottom: 1.5rem; display: block;
+}
+.project-title {
+  font-size: 1.25rem; font-weight: 700;
+  margin-bottom: 0.8rem; letter-spacing: -0.01em;
+}
+.project-desc {
+  font-family: var(--font-mono); font-size: 0.8rem;
+  line-height: 1.75; color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+.project-stack { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+.stack-pill {
+  font-family: var(--font-mono); font-size: 0.65rem;
+  padding: 0.2rem 0.6rem;
+  border: 1px solid var(--border);
+  color: var(--text-dim); letter-spacing: 0.05em;
+}
+.project-link {
+  font-family: var(--font-mono); font-size: 0.72rem;
+  color: var(--accent); text-decoration: none;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  transition: gap 0.2s;
+}
+.project-link:hover { gap: 0.8rem; }
