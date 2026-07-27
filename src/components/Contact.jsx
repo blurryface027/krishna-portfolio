@@ -17,7 +17,7 @@ const Contact = () => {
         <a href="https://github.com/blurryface027" target="_blank" rel="noopener noreferrer" className="contact-link"><FaGithub /> GitHub</a>
         <a href="https://linkedin.com/in/blurryface027" target="_blank" rel="noopener noreferrer" className="contact-link"><FaLinkedin /> LinkedIn</a>
         <a href="https://twitter.com/kopscloud" target="_blank" rel="noopener noreferrer" className="contact-link"><FaXTwitter /> X</a>
-        <a href="#" className="contact-link"><FaFileDownload /> Resume</a>
+        <a href="https://drive.google.com/file/d/1EQ8k7yxcEh7hEl7hv9h_Sb8g2F1dSA8Z/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="contact-link"><FaFileDownload /> Resume</a>
       </div>
       <a href="mailto:hello@kopscloud.in" className="btn-primary reveal" style={{ margin: '0 auto', display: 'inline-flex' }}>
         Say Hello →

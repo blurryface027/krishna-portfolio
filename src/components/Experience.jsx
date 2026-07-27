@@ -14,7 +14,7 @@ const Experience = () => {
               <span className="exp-period">2023 — Present</span>
               <span className="exp-company">Acme Corp · Full-time</span>
             </div>
-            <div className="exp-role">Senior DevOps Engineer</div>
+            <div className="exp-role">Senior DevOps and Cloud Learner</div>
             <ul className="exp-desc">
               <li>Led migration of 30+ services from bare metal to Kubernetes on AWS EKS</li>
               <li>Built and maintained CI/CD pipelines handling 200+ deployments per week</li>
@@ -28,7 +28,7 @@ const Experience = () => {
               <span className="exp-period">2021 — 2023</span>
               <span className="exp-company">TechStart Inc · Full-time</span>
             </div>
-            <div className="exp-role">DevOps Engineer</div>
+            <div className="exp-role">DevOps and Cloud Learner</div>
             <ul className="exp-desc">
               <li>Designed and automated infrastructure provisioning using Terraform for multi-region deployments</li>
               <li>Built internal developer portal reducing environment setup time from days to minutes</li>

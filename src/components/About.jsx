@@ -10,7 +10,7 @@ const About = () => {
       <div className="about-grid">
 
         <div className="about-text reveal">
-          <p>Hi, I'm <strong>Krishna</strong> — a DevOps Engineer who thrives at the intersection of development and operations. I believe infrastructure should be <strong>code</strong>, deployments should be <strong>boring</strong>, and on-call should be <strong>rare</strong>.</p>
+          <p>Hi, I'm <strong>Krishna</strong> — a DevOps and Cloud Learner who thrives at the intersection of development and operations. I believe infrastructure should be <strong>code</strong>, deployments should be <strong>boring</strong>, and on-call should be <strong>rare</strong>.</p>
           <p>I work with teams to automate everything that can be automated, build observability into systems from day one, and design architectures that scale without drama.</p>
           <p>When I'm not tuning Kubernetes clusters or debugging YAML, I'm exploring new tools in the cloud-native ecosystem and contributing to internal platform teams.</p>
           <div className="about-facts">
@@ -20,7 +20,7 @@ const About = () => {
             </div>
             <div className="fact">
               <div className="fact-key">Role</div>
-              <div className="fact-val">DevOps Engineer</div>
+              <div className="fact-val">DevOps and Cloud Engineer</div>
             </div>
             <div className="fact">
               <div className="fact-key">Focus</div>

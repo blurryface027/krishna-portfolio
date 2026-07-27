@@ -9,51 +9,36 @@ const Projects = () => {
       <div className="projects-grid">
         <div className="project-card reveal" style={{ transitionDelay: '0s' }}>
           <span className="project-num">01 / PROJECT</span>
-          <h3 className="project-title">K8s GitOps Platform</h3>
-          <p className="project-desc">Built a production-grade GitOps platform using ArgoCD and Helm on EKS. Reduced deployment time from 45 minutes to under 8 minutes across 12 microservices.</p>
+          <h3 className="project-title">Amazon Polly Text-to-Speech</h3>
+          <p className="project-desc">Serverless text-to-speech application utilizing Amazon Polly to convert text into lifelike speech.</p>
           <div className="project-stack">
-            <span className="stack-pill">Kubernetes</span>
-            <span className="stack-pill">ArgoCD</span>
-            <span className="stack-pill">Helm</span>
-            <span className="stack-pill">AWS EKS</span>
+            <span className="stack-pill">AWS</span>
+            <span className="stack-pill">Amazon Polly</span>
+            <span className="stack-pill">Serverless</span>
           </div>
-          <a href="#" className="project-link">View Details →</a>
+          <a href="https://github.com/blurryface027/amazon-polly-text-to-speech" target="_blank" rel="noopener noreferrer" className="project-link">View on GitHub →</a>
         </div>
         <div className="project-card reveal" style={{ transitionDelay: '0.08s' }}>
           <span className="project-num">02 / PROJECT</span>
-          <h3 className="project-title">Zero-Downtime Pipeline</h3>
-          <p className="project-desc">Designed a blue-green CI/CD pipeline with automated rollback using GitHub Actions and Terraform. Achieved 99.98% deployment success rate over 6 months.</p>
+          <h3 className="project-title">Amazon Prime DevSecOps</h3>
+          <p className="project-desc">Implemented a comprehensive DevSecOps pipeline for an Amazon Prime clone, integrating security checks at every stage.</p>
           <div className="project-stack">
-            <span className="stack-pill">GitHub Actions</span>
-            <span className="stack-pill">Terraform</span>
-            <span className="stack-pill">AWS ALB</span>
-            <span className="stack-pill">Docker</span>
+            <span className="stack-pill">DevSecOps</span>
+            <span className="stack-pill">CI/CD</span>
+            <span className="stack-pill">Security</span>
           </div>
-          <a href="#" className="project-link">View Details →</a>
+          <a href="https://github.com/blurryface027/amazon-prime-devsecops" target="_blank" rel="noopener noreferrer" className="project-link">View on GitHub →</a>
         </div>
         <div className="project-card reveal" style={{ transitionDelay: '0.16s' }}>
           <span className="project-num">03 / PROJECT</span>
-          <h3 className="project-title">Infra Cost Optimizer</h3>
-          <p className="project-desc">Automated cloud cost analysis tool using Python and AWS Cost Explorer. Identified and eliminated $14k/month in unused resources with weekly Slack reports.</p>
+          <h3 className="project-title">AWS CodePipeline 2048</h3>
+          <p className="project-desc">Automated deployment of the classic 2048 game using AWS CodePipeline for continuous integration and continuous delivery.</p>
           <div className="project-stack">
-            <span className="stack-pill">Python</span>
-            <span className="stack-pill">AWS Lambda</span>
-            <span className="stack-pill">Cost Explorer</span>
-            <span className="stack-pill">Slack API</span>
+            <span className="stack-pill">AWS CodePipeline</span>
+            <span className="stack-pill">CI/CD</span>
+            <span className="stack-pill">Automation</span>
           </div>
-          <a href="#" className="project-link">View Details →</a>
-        </div>
-        <div className="project-card reveal" style={{ transitionDelay: '0.24s' }}>
-          <span className="project-num">04 / PROJECT</span>
-          <h3 className="project-title">Observability Stack</h3>
-          <p className="project-desc">Deployed end-to-end observability with Prometheus, Grafana, and Loki. Created 40+ dashboards and automated alerting that cut MTTR by 60%.</p>
-          <div className="project-stack">
-            <span className="stack-pill">Prometheus</span>
-            <span className="stack-pill">Grafana</span>
-            <span className="stack-pill">Loki</span>
-            <span className="stack-pill">PagerDuty</span>
-          </div>
-          <a href="#" className="project-link">View Details →</a>
+          <a href="https://github.com/blurryface027/aws-codepipeline-2048" target="_blank" rel="noopener noreferrer" className="project-link">View on GitHub →</a>
         </div>
       </div>
     </section>

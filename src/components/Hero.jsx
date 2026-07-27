@@ -8,7 +8,7 @@ const Hero = () => {
       <div className="hero-glow"></div>
       <div className="hero-glow-2"></div>
 
-      <div className="hero-eyebrow">Available for work · DevOps Engineer</div>
+      <div className="hero-eyebrow">Available for work · DevOps & Cloud</div>
       <h1 className="hero-name">
         <span>Krishna</span>
       </h1>
@@ -24,8 +24,8 @@ const Hero = () => {
       </div>
 
       <div className="hero-scroll">
-        <div className="scroll-line"></div>
         Scroll to explore
+        <div className="scroll-line"></div>
       </div>
 
       <div className="hero-stats">
