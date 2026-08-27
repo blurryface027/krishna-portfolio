@@ -1,20 +1,32 @@
 /* CUSTOM CURSOR */
 .cursor {
-  width: 10px; height: 10px;
-  background: var(--accent);
+  width: 10px;
+  height: 10px;
+  background: var(--accent-emerald);
   border-radius: 50%;
-  position: fixed; top: 0; left: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
   pointer-events: none;
   z-index: 9999;
-  transition: transform 0.15s ease;
-  mix-blend-mode: screen;
+  box-shadow: 0 0 10px var(--accent-emerald);
 }
+
 .cursor-ring {
-  width: 36px; height: 36px;
-  border: 1px solid rgba(0,212,255,0.4);
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(16, 185, 129, 0.4);
   border-radius: 50%;
-  position: fixed; top: 0; left: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
   pointer-events: none;
   z-index: 9998;
-  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), width 0.3s, height 0.3s;
+  transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
+}
+
+@media (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .cursor, .cursor-ring {
+    display: none !important;
+  }
 }

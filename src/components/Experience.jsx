@@ -1,52 +1,86 @@
 import React from 'react';
+import { FaBriefcase, FaCalendarCheck, FaLocationDot } from 'react-icons/fa6';
 import './Experience.css';
+
+const experienceData = [
+  {
+    period: '2023 — PRESENT',
+    role: 'Cloud & DevOps Engineer',
+    company: 'DevOps & Infrastructure Practice',
+    location: 'India',
+    highlights: [
+      'Architected containerized applications using Docker and orchestrated deployments on Kubernetes (EKS/ECS)',
+      'Constructed automated CI/CD pipelines handling end-to-end testing, building, and zero-downtime deployment',
+      'Optimized cloud resource utilization on AWS, implementing auto-scaling policies and cost-efficient architectures',
+      'Integrated security vulnerability scanning (Trivy, SonarQube) and secrets management into developer workflows'
+    ]
+  },
+  {
+    period: '2021 — 2023',
+    role: 'Infrastructure Automation Developer',
+    company: 'Cloud Native Projects',
+    location: 'India',
+    highlights: [
+      'Wrote modular Infrastructure as Code (IaC) templates in Terraform to provision multi-service AWS environments',
+      'Automated server configuration and package management using Ansible playbooks and Bash scripts',
+      'Implemented real-time monitoring and alerting stacks using Prometheus, Grafana, and AWS CloudWatch'
+    ]
+  },
+  {
+    period: '2020 — 2021',
+    role: 'Cloud Infrastructure Intern',
+    company: 'Infrastructure Learning & Labs',
+    location: 'India',
+    highlights: [
+      'Assisted in migrating legacy workloads to AWS EC2 and S3 infrastructure',
+      'Created custom automation scripts for backup routines, log rotation, and system health checks'
+    ]
+  }
+];
 
 const Experience = () => {
   return (
-    <section id="experience">
-      <div className="experience-inner">
-        <div className="section-label reveal">Career Path</div>
-        <h2 className="section-title reveal">Where I've<br/>shipped things</h2>
-        <div className="timeline">
-          <div className="timeline-item">
-            <div className="timeline-dot"></div>
-            <div className="exp-meta">
-              <span className="exp-period">2023 — Present</span>
-              <span className="exp-company">Acme Corp · Full-time</span>
+    <section id="experience" className="experience-section">
+      <div className="container">
+        {/* Reference Section Heading: `timeline.` */}
+        <div className="section-header reveal">
+          <h2 className="section-dot-title">
+            timeline<span className="dot">.</span>
+          </h2>
+          <p className="section-subtitle">
+            My career path, hands-on projects, and technical milestones in DevOps & Cloud engineering.
+          </p>
+        </div>
+
+        <div className="timeline-container">
+          {experienceData.map((item, index) => (
+            <div key={item.period} className="timeline-item reveal" style={{ transitionDelay: `${index * 0.1}s` }}>
+              {/* Timeline Dot Node */}
+              <div className="timeline-marker">
+                <span className="marker-dot"></span>
+              </div>
+
+              {/* Timeline Card Content */}
+              <div className="bento-card timeline-card">
+                <div className="timeline-card-header">
+                  <div className="period-badge">
+                    <FaCalendarCheck /> {item.period}
+                  </div>
+                  <div className="company-badge">
+                    <FaBriefcase /> {item.company}
+                  </div>
+                </div>
+
+                <h3 className="exp-role-title">{item.role}</h3>
+
+                <ul className="exp-list">
+                  {item.highlights.map((bullet, i) => (
+                    <li key={i}>{bullet}</li>
+                  ))}
+                </ul>
+              </div>
             </div>
-            <div className="exp-role">Senior DevOps and Cloud Learner</div>
-            <ul className="exp-desc">
-              <li>Led migration of 30+ services from bare metal to Kubernetes on AWS EKS</li>
-              <li>Built and maintained CI/CD pipelines handling 200+ deployments per week</li>
-              <li>Reduced infrastructure costs by 35% through rightsizing and spot instance strategies</li>
-              <li>Implemented SOC2-compliant security policies and secrets management with Vault</li>
-            </ul>
-          </div>
-          <div className="timeline-item">
-            <div className="timeline-dot"></div>
-            <div className="exp-meta">
-              <span className="exp-period">2021 — 2023</span>
-              <span className="exp-company">TechStart Inc · Full-time</span>
-            </div>
-            <div className="exp-role">DevOps and Cloud Learner</div>
-            <ul className="exp-desc">
-              <li>Designed and automated infrastructure provisioning using Terraform for multi-region deployments</li>
-              <li>Built internal developer portal reducing environment setup time from days to minutes</li>
-              <li>Established on-call runbooks and incident response processes</li>
-            </ul>
-          </div>
-          <div className="timeline-item">
-            <div className="timeline-dot"></div>
-            <div className="exp-meta">
-              <span className="exp-period">2020 — 2021</span>
-              <span className="exp-company">DevSolutions · Internship</span>
-            </div>
-            <div className="exp-role">Cloud Infrastructure Intern</div>
-            <ul className="exp-desc">
-              <li>Assisted in migrating on-premise workloads to AWS, supporting 4 production services</li>
-              <li>Wrote automation scripts in Bash and Python for routine operational tasks</li>
-            </ul>
-          </div>
+          ))}
         </div>
       </div>
     </section>

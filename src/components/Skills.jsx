@@ -1,5 +1,14 @@
-import React from 'react';
-import { FaAws, FaDocker, FaJenkins, FaLinux, FaGitAlt, FaGithub } from 'react-icons/fa';
+import React, { useState } from 'react';
+import { 
+  FaAws, 
+  FaDocker, 
+  FaJenkins, 
+  FaLinux, 
+  FaGitAlt, 
+  FaGithub, 
+  FaShieldHalved,
+  FaTerminal
+} from 'react-icons/fa6';
 import { 
   SiKubernetes, 
   SiHelm, 
@@ -8,80 +17,130 @@ import {
   SiTerraform, 
   SiPrometheus, 
   SiGrafana, 
-  SiGnubash 
+  SiGnubash,
+  SiNginx
 } from 'react-icons/si';
 import './Skills.css';
 
+const categories = [
+  { id: 'all', label: 'All Stack' },
+  { id: 'cloud', label: 'Cloud' },
+  { id: 'devops', label: 'DevOps & CI/CD' },
+  { id: 'iac', label: 'Infrastructure & OS' },
+  { id: 'monitoring', label: 'Observability' },
+  { id: 'vcs', label: 'Version Control' }
+];
+
+const skillCards = [
+  {
+    category: 'cloud',
+    icon: <FaAws />,
+    name: 'Amazon Web Services',
+    desc: 'Core Cloud Provider',
+    tags: ['EC2', 'ECS', 'EKS', 'ECR', 'Lambda', 'API Gateway', 'IAM', 'VPC', 'ALB', 'S3', 'CloudWatch', 'Route53', 'Amazon Polly']
+  },
+  {
+    category: 'devops',
+    icon: <FaDocker />,
+    name: 'Containers & Orchestration',
+    desc: 'Container Lifecycle & Packaging',
+    tags: ['Docker', 'Kubernetes', 'Helm', 'Argo CD', 'Docker Scout']
+  },
+  {
+    category: 'devops',
+    icon: <FaJenkins />,
+    name: 'CI/CD & DevSecOps',
+    desc: 'Automated Pipelines & Security',
+    tags: ['Jenkins', 'AWS CodePipeline', 'AWS CodeBuild', 'SonarQube', 'Trivy']
+  },
+  {
+    category: 'iac',
+    icon: <SiTerraform />,
+    name: 'Infrastructure as Code',
+    desc: 'Declarative Provisioning & Automation',
+    tags: ['Terraform', 'Ansible']
+  },
+  {
+    category: 'iac',
+    icon: <FaLinux />,
+    name: 'OS & Web Servers',
+    desc: 'Linux Systems & Reverse Proxies',
+    tags: ['Linux', 'Bash Shell', 'Nginx']
+  },
+  {
+    category: 'monitoring',
+    icon: <SiPrometheus />,
+    name: 'Observability & Metrics',
+    desc: 'System Telemetry & Alerting',
+    tags: ['Prometheus', 'Grafana', 'AWS CloudWatch']
+  },
+  {
+    category: 'vcs',
+    icon: <FaGitAlt />,
+    name: 'Version Control & Workflow',
+    desc: 'Distributed Versioning & Operations',
+    tags: ['Git', 'GitHub', 'GitHub Actions']
+  }
+];
+
 const Skills = () => {
+  const [activeTab, setActiveTab] = useState('all');
+
+  const filteredSkills = activeTab === 'all'
+    ? skillCards
+    : skillCards.filter(s => s.category === activeTab);
+
   return (
-    <section id="skills">
-      <div className="skills-inner">
-        <div className="section-label reveal">Technical Skills</div>
-        <h2 className="section-title reveal">Tools of<br/>the trade</h2>
+    <section id="skills" className="skills-section">
+      <div className="container">
+        {/* Reference Section Heading: `toolchain.` */}
+        <div className="section-header reveal">
+          <h2 className="section-dot-title">
+            toolchain<span className="dot">.</span>
+          </h2>
+          <p className="section-subtitle">
+            Technologies, platforms, and tools I use to build, automate, and maintain cloud environments.
+          </p>
+        </div>
+
+        {/* Category Tabs */}
+        <div className="skills-tabs reveal">
+          {categories.map(cat => (
+            <button
+              key={cat.id}
+              className={`skills-tab ${activeTab === cat.id ? 'active' : ''}`}
+              onClick={() => setActiveTab(cat.id)}
+            >
+              {cat.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Skills Cards Bento Grid */}
         <div className="skills-grid">
-          <div className="skill-cat reveal" style={{ transitionDelay: '0s' }}>
-            <span className="skill-cat-icon"><FaAws /></span>
-            <div className="skill-cat-name">Cloud</div>
-            <div className="skill-tags">
-              <span className="skill-tag"><FaAws /> AWS</span>
-              <span className="skill-tag">EC2</span>
-              <span className="skill-tag">ECS</span>
-              <span className="skill-tag">EKS</span>
-              <span className="skill-tag">ECR</span>
-              <span className="skill-tag">Lambda</span>
-              <span className="skill-tag">API Gateway</span>
-              <span className="skill-tag">IAM</span>
-              <span className="skill-tag">VPC</span>
-              <span className="skill-tag">ALB</span>
-              <span className="skill-tag">S3</span>
-              <span className="skill-tag">CloudWatch</span>
-              <span className="skill-tag">Route53</span>
-              <span className="skill-tag">Amazon Polly</span>
+          {filteredSkills.map((card, i) => (
+            <div
+              key={card.name}
+              className="bento-card skill-card reveal"
+              style={{ transitionDelay: `${i * 0.05}s` }}
+            >
+              <div className="skill-card-header">
+                <div className="skill-icon-badge">{card.icon}</div>
+                <div>
+                  <h3 className="skill-card-title">{card.name}</h3>
+                  <p className="skill-card-desc">{card.desc}</p>
+                </div>
+              </div>
+
+              <div className="skill-pills-wrap">
+                {card.tags.map(tag => (
+                  <span key={tag} className="skill-pill">
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
-          </div>
-          <div className="skill-cat reveal" style={{ transitionDelay: '0.06s' }}>
-            <span className="skill-cat-icon"><FaDocker /></span>
-            <div className="skill-cat-name">DevOps</div>
-            <div className="skill-tags">
-              <span className="skill-tag"><FaDocker /> Docker</span>
-              <span className="skill-tag"><SiKubernetes /> Kubernetes</span>
-              <span className="skill-tag"><FaJenkins /> Jenkins</span>
-              <span className="skill-tag"><FaAws /> AWS CodePipeline</span>
-              <span className="skill-tag"><FaAws /> AWS CodeBuild</span>
-              <span className="skill-tag"><SiHelm /> Helm</span>
-              <span className="skill-tag"><SiArgo /> Argo CD</span>
-              <span className="skill-tag">SonarQube</span>
-              <span className="skill-tag">Trivy</span>
-              <span className="skill-tag">Docker Scout</span>
-            </div>
-          </div>
-          <div className="skill-cat reveal" style={{ transitionDelay: '0.12s' }}>
-            <span className="skill-cat-icon"><SiTerraform /></span>
-            <div className="skill-cat-name">Infrastructure</div>
-            <div className="skill-tags">
-              <span className="skill-tag"><SiTerraform /> Terraform</span>
-              <span className="skill-tag"><SiAnsible /> Ansible</span>
-              <span className="skill-tag"><FaLinux /> Linux</span>
-              <span className="skill-tag"><SiGnubash /> Bash</span>
-              <span className="skill-tag">Nginx</span>
-            </div>
-          </div>
-          <div className="skill-cat reveal" style={{ transitionDelay: '0.18s' }}>
-            <span className="skill-cat-icon"><SiPrometheus /></span>
-            <div className="skill-cat-name">Monitoring</div>
-            <div className="skill-tags">
-              <span className="skill-tag"><SiPrometheus /> Prometheus</span>
-              <span className="skill-tag"><SiGrafana /> Grafana</span>
-            </div>
-          </div>
-          <div className="skill-cat reveal" style={{ transitionDelay: '0.24s' }}>
-            <span className="skill-cat-icon"><FaGitAlt /></span>
-            <div className="skill-cat-name">Version Control</div>
-            <div className="skill-tags">
-              <span className="skill-tag"><FaGitAlt /> Git</span>
-              <span className="skill-tag"><FaGithub /> GitHub</span>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>
