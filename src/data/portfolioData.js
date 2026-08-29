@@ -33,7 +33,7 @@ export const portfolioData = {
     linkedin: "https://linkedin.com/in/blurryface027",
     twitter: "https://x.com/blurryface027",
     email: "mailto:krishna158310@gmail.com",
-    resume: "#"
+    resume: "https://drive.google.com/file/d/1EQ8k7yxcEh7hEl7hv9h_Sb8g2F1dSA8Z/view?usp=sharing"
   },
   education: {
     institution: "Dr. A.P.J. Abdul Kalam Technical University",
