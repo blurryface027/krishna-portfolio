@@ -1,27 +1,35 @@
-import React, { useEffect, useState } from 'react';
-import { FaBars, FaXmark, FaGithub, FaArrowUpRightFromSquare } from 'react-icons/fa6';
-import './Navbar.css';
+import React, { useState, useEffect } from 'react';
+import { Container } from './Container';
+import { portfolioData } from '../data/portfolioData';
+import { FiSearch, FiSun, FiMoon } from 'react-icons/fi';
 
-const Navbar = () => {
-  const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('hero');
+export function Navbar({ onOpenPalette }) {
+  const [activeSection, setActiveSection] = useState('home');
+  const [isDark, setIsDark] = useState(true);
 
+  const navItems = [
+    { label: 'Home', id: 'home' },
+    { label: 'Projects', id: 'projects' },
+    { label: 'Experience', id: 'experience' },
+    { label: 'Contact', id: 'contact' },
+  ];
+
+  // Scroll spy to highlight active nav link
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 40);
+      const scrollPos = window.scrollY + 100;
 
-      // Section highlight logic
-      const sections = ['hero', 'about', 'skills', 'projects', 'experience', 'contact'];
-      const scrollPosition = window.scrollY + 200;
-
-      for (const sectionId of sections) {
-        const element = document.getElementById(sectionId);
-        if (element) {
-          const top = element.offsetTop;
-          const height = element.offsetHeight;
-          if (scrollPosition >= top && scrollPosition < top + height) {
-            setActiveSection(sectionId);
+      for (let i = navItems.length - 1; i >= 0; i--) {
+        const item = navItems[i];
+        if (item.id === 'home') {
+          if (window.scrollY < 300) {
+            setActiveSection('home');
+            break;
+          }
+        } else {
+          const el = document.getElementById(item.id);
+          if (el && el.offsetTop <= scrollPos) {
+            setActiveSection(item.id);
             break;
           }
         }
@@ -32,138 +40,97 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const toggleMenu = () => setMenuOpen(!menuOpen);
-  const closeMenu = () => setMenuOpen(false);
-
-  useEffect(() => {
-    if (menuOpen) {
-      document.body.style.overflow = 'hidden';
+  const handleNavClick = (id) => {
+    setActiveSection(id);
+    if (id === 'home') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      document.body.style.overflow = 'unset';
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
     }
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [menuOpen]);
+  };
 
   return (
-    <header className={`header ${scrolled ? 'header-scrolled' : ''}`}>
-      <div className="container header-container">
-        <a href="#hero" className="nav-logo" onClick={closeMenu} aria-label="Krishna Portfolio Home">
-          <span className="logo-pulse"></span>
-          <span className="logo-text">K/OpsCloud</span>
-        </a>
-
-        {/* Desktop Navigation */}
-        <nav className="desktop-nav" aria-label="Main navigation">
-          <ul className="nav-list">
-            <li>
-              <a
-                href="#about"
-                className={`nav-link ${activeSection === 'about' ? 'active' : ''}`}
-              >
-                whoami<span className="nav-dot">.</span>
-              </a>
-            </li>
-            <li>
-              <a
-                href="#projects"
-                className={`nav-link ${activeSection === 'projects' ? 'active' : ''}`}
-              >
-                shipped<span className="nav-dot">.</span>
-              </a>
-            </li>
-            <li>
-              <a
-                href="#skills"
-                className={`nav-link ${activeSection === 'skills' ? 'active' : ''}`}
-              >
-                toolchain<span className="nav-dot">.</span>
-              </a>
-            </li>
-            {/* <li>
-              <a
-                href="#experience"
-                className={`nav-link ${activeSection === 'experience' ? 'active' : ''}`}
-              >
-                timeline<span className="nav-dot">.</span>
-              </a>
-            </li> */}
-            <li>
-              <a
-                href="#contact"
-                className={`nav-link ${activeSection === 'contact' ? 'active' : ''}`}
-              >
-                contact<span className="nav-dot">.</span>
-              </a>
-            </li>
-          </ul>
-
-          <a
-            href="https://github.com/blurryface027"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-pill github-nav-btn"
-            aria-label="GitHub Profile (opens in new tab)"
-          >
-            <FaGithub /> GitHub <FaArrowUpRightFromSquare className="external-icon" />
-          </a>
-        </nav>
-
-        {/* Mobile Hamburger Toggle */}
+    <header className="sticky top-0 z-40 border-b border-[var(--line)] bg-[var(--bg)]/85 backdrop-blur-md">
+      <Container className="flex items-center justify-between px-6 py-3 sm:px-8">
+        {/* Brand Name */}
         <button
-          className="mobile-toggle"
-          onClick={toggleMenu}
-          aria-expanded={menuOpen}
-          aria-label="Toggle navigation menu"
+          type="button"
+          onClick={() => handleNavClick('home')}
+          className="font-serif text-xl tracking-wide text-[var(--fg)] hover:opacity-80 transition-opacity cursor-pointer border-none bg-transparent p-0"
         >
-          {menuOpen ? <FaXmark /> : <FaBars />}
+          {portfolioData.firstName}
         </button>
 
-        {/* Mobile Drawer Menu */}
-        <div className={`mobile-drawer ${menuOpen ? 'drawer-open' : ''}`}>
-          <ul className="mobile-nav-list">
-            <li>
-              <a href="#about" onClick={closeMenu}>
-                whoami<span className="nav-dot">.</span>
-              </a>
-            </li>
-            <li>
-              <a href="#projects" onClick={closeMenu}>
-                shipped<span className="nav-dot">.</span>
-              </a>
-            </li>
-            <li>
-              <a href="#skills" onClick={closeMenu}>
-                toolchain<span className="nav-dot">.</span>
-              </a>
-            </li>
-            {/* <li>
-              <a href="#experience" onClick={closeMenu}>
-                timeline<span className="nav-dot">.</span>
-              </a>
-            </li> */}
-            <li>
-              <a href="#contact" onClick={closeMenu}>
-                contact<span className="nav-dot">.</span>
-              </a>
-            </li>
-            <li className="mobile-btn-wrap">
-              <a
-                href="https://github.com/blurryface027"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-emerald"
-                onClick={closeMenu}
+        {/* Desktop Navigation */}
+        <nav className="hidden sm:flex items-center gap-5 text-[13px] text-[var(--muted)]">
+          {navItems.map(({ label, id }) => {
+            const isActive = activeSection === id;
+            return (
+              <button
+                key={label}
+                type="button"
+                onClick={() => handleNavClick(id)}
+                className={`group relative transition-colors hover:text-[var(--fg)] cursor-pointer bg-transparent border-none p-0 ${
+                  isActive ? 'text-[var(--fg)] font-semibold' : ''
+                }`}
               >
-                <FaGithub /> GitHub Profile
-              </a>
-            </li>
-          </ul>
+                {label}
+                <span
+                  className={`absolute -bottom-0.5 left-0 h-px w-full origin-right scale-x-0 bg-current transition-transform duration-300 group-hover:origin-left group-hover:scale-x-100 ${
+                    isActive ? 'scale-x-100 origin-left' : ''
+                  }`}
+                />
+              </button>
+            );
+          })}
+
+          {/* Search Icon Button */}
+          {onOpenPalette && (
+            <button
+              type="button"
+              onClick={onOpenPalette}
+              aria-label="Search Command Palette"
+              title="Open Search (⌘K)"
+              className="grid size-7 place-items-center rounded-full border border-[var(--line)] text-[var(--muted)] transition-all duration-300 hover:text-[var(--fg)] hover:border-[var(--soft)] cursor-pointer"
+            >
+              <FiSearch className="size-3.5" />
+            </button>
+          )}
+
+          {/* Theme Toggle Button */}
+          <button
+            type="button"
+            onClick={() => setIsDark(!isDark)}
+            aria-label="Toggle theme"
+            className="grid size-7 place-items-center rounded-full border border-[var(--line)] text-[var(--muted)] transition-all duration-300 hover:rotate-45 hover:text-[var(--fg)] hover:border-[var(--soft)] cursor-pointer"
+          >
+            {isDark ? <FiSun className="size-3.5" /> : <FiMoon className="size-3.5" />}
+          </button>
+        </nav>
+
+        {/* Mobile Nav Action Buttons */}
+        <div className="flex sm:hidden items-center gap-3">
+          {onOpenPalette && (
+            <button
+              type="button"
+              onClick={onOpenPalette}
+              aria-label="Search Command Palette"
+              className="grid size-8 place-items-center rounded-full border border-[var(--line)] text-[var(--muted)] hover:text-[var(--fg)] cursor-pointer"
+            >
+              <FiSearch className="size-4" />
+            </button>
+          )}
+          <button
+            type="button"
+            onClick={() => setIsDark(!isDark)}
+            aria-label="Toggle theme"
+            className="grid size-8 place-items-center rounded-full border border-[var(--line)] text-[var(--muted)] hover:text-[var(--fg)] cursor-pointer"
+          >
+            {isDark ? <FiSun className="size-4" /> : <FiMoon className="size-4" />}
+          </button>
         </div>
-      </div>
+      </Container>
     </header>
   );
-};
-
-export default Navbar;
+}

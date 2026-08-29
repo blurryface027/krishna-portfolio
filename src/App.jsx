@@ -1,51 +1,62 @@
-import React, { useEffect } from 'react';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import About from './components/About';
-import Skills from './components/Skills';
-import Projects from './components/Projects';
-// import Experience from './components/Experience';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
+import React, { useState, useEffect } from 'react';
+import { Navbar } from './components/Navbar';
+import { Header } from './components/Header';
+import { AboutSection } from './components/AboutSection';
+import { ProjectsSection } from './components/ProjectsSection';
+import { ExperienceSection } from './components/ExperienceSection';
+import { TechStackSection } from './components/TechStackSection';
+import { SidebarIndex } from './components/SidebarIndex';
+import { Footer } from './components/Footer';
+import { CommandPalette } from './components/CommandPalette';
 
-function App() {
+export default function App() {
+  const [paletteOpen, setPaletteOpen] = useState(false);
+
+  // Cmd/Ctrl + K
   useEffect(() => {
-    // Reveal elements on scroll using IntersectionObserver
-    const reveals = document.querySelectorAll('.reveal');
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { 
-      threshold: 0.1,
-      rootMargin: '0px 0px -40px 0px'
-    });
-    
-    reveals.forEach(el => observer.observe(el));
-
-    return () => {
-      observer.disconnect();
+    const handler = (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        setPaletteOpen((prev) => !prev);
+      }
     };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
   }, []);
 
   return (
-    <>
-      <Navbar />
-      <main id="main-content">
-        <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        {/* <Experience /> */}
-        <Contact />
+    <div className="min-h-screen bg-[var(--bg)] font-sans text-[var(--fg)] antialiased transition-colors duration-300 relative">
+      {/* Sticky Top Header Navigation (reference: O2) */}
+      <Navbar onOpenPalette={() => setPaletteOpen(true)} />
+
+      {/* Floating Right Sidebar Index (reference: z2) */}
+      <SidebarIndex />
+
+      <main>
+        {/* Header with banner + profile info (reference: B2) */}
+        <Header onOpenPalette={() => setPaletteOpen(true)} />
+
+        {/* About section (reference: U2) */}
+        <AboutSection />
+
+        {/* Projects (reference: nv) */}
+        <ProjectsSection isSearchable={false} />
+
+        {/* Tech Stack / Skills (reference: eP) */}
+        <TechStackSection />
+
+        {/* Experience / Education (reference: rv) */}
+        <ExperienceSection />
       </main>
+
+      {/* Footer (reference: F2) */}
       <Footer />
-    </>
+
+      {/* Command Palette (reference: oP) */}
+      <CommandPalette
+        isOpen={paletteOpen}
+        onClose={() => setPaletteOpen(false)}
+      />
+    </div>
   );
 }
-
-export default App;
