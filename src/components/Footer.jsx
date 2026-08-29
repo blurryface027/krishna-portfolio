@@ -64,13 +64,13 @@ export function Footer() {
       <SectionHeader title="Scrolled Too Far" />
       
       {/* Scrolled too far CTA */}
-      <Container className="px-6 py-10 text-center sm:px-8">
-        <p className="text-[14px] text-[var(--muted)]">
+      <Container className="px-6 py-8 text-center sm:px-8">
+        <p className="text-[13px] text-[var(--muted)]">
           If you've read this far, you might be interested in collaborating or building something great.
         </p>
         <a
           href="mailto:krishna158310@gmail.com"
-          className="group mt-5 inline-flex items-center gap-2 rounded-lg border border-white/20 bg-black px-5 py-2.5 text-[13px] font-medium text-white transition-all duration-200 hover:border-white hover:bg-[var(--chip)] hover:-translate-y-0.5 shadow-sm"
+          className="group mt-4 inline-flex items-center gap-2 rounded-lg border border-[var(--line)] bg-[var(--fg)] px-4 py-2 text-[12.5px] font-medium text-[var(--bg)] transition-all duration-200 hover:border-[var(--soft)] hover:bg-[var(--fg)]/90 hover:-translate-y-0.5 shadow-sm"
         >
           Let's Talk
           <FiArrowRight className="size-3.5 transition-transform duration-200 group-hover:translate-x-1" />
@@ -84,8 +84,8 @@ export function Footer() {
 
       {/* Dynamic Animated Quote Section matching reference F2 */}
       <div className="w-full border-y border-[var(--line)]">
-        <Container className="px-8 py-12 text-center min-h-[160px] flex flex-col items-center justify-center bg-[var(--bg)] select-none">
-          <div className="w-full max-w-[580px] min-h-[140px] flex flex-col items-center justify-center overflow-hidden">
+        <Container className="px-6 py-10 text-center min-h-[140px] flex flex-col items-center justify-center bg-[var(--bg)] select-none">
+          <div className="w-full max-w-[540px] min-h-[120px] flex flex-col items-center justify-center overflow-hidden">
             <div
               className="flex flex-col items-center transition-all duration-500 ease-in-out"
               style={{
@@ -93,11 +93,11 @@ export function Footer() {
                 transform: fadeState ? 'translateY(0)' : 'translateY(10px)',
               }}
             >
-              <span className="font-serif text-4xl text-[var(--soft)] leading-none">“</span>
-              <p className="font-serif mx-auto -mt-2 max-w-md text-[20px] sm:text-[22px] italic leading-snug text-[var(--fg)]">
+              <span className="font-serif text-3xl text-[var(--soft)] leading-none">“</span>
+              <p className="font-serif mx-auto -mt-1.5 max-w-md text-[16.5px] sm:text-[18px] italic leading-snug text-[var(--fg)]">
                 {currentQuote.text}
               </p>
-              <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.3em] text-[var(--soft)] font-bold">
+              <p className="mt-3 font-mono text-[9.5px] uppercase tracking-[0.25em] text-[var(--soft)] font-bold">
                 — {currentQuote.author}
               </p>
             </div>
@@ -109,14 +109,14 @@ export function Footer() {
 
       {/* Bottom copyright footer matching reference */}
       <div className="w-full border-t border-[var(--line)]">
-        <Container className="border-b-0 px-6 py-8 text-center sm:px-8">
-          <p className="text-[14.5px] text-[var(--muted)]">
+        <Container className="border-b-0 px-6 py-6 text-center sm:px-8">
+          <p className="text-[13px] text-[var(--muted)]">
             Designed & Developed by <span className="font-semibold text-[var(--fg)]">{portfolioData.name}</span>
           </p>
-          <p className="mt-1.5 font-mono text-[12px] text-[var(--soft)]">
+          <p className="mt-1 font-mono text-[11px] text-[var(--soft)]">
             © {new Date().getFullYear()} All rights reserved.
           </p>
-          <p className="mt-2.5 flex items-center justify-center gap-2 font-mono text-[12px] text-[var(--soft)]">
+          <p className="mt-2 flex items-center justify-center gap-2 font-mono text-[11px] text-[var(--soft)]">
             <span className="relative flex size-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
               <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />

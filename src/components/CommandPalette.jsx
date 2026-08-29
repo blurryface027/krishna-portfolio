@@ -78,13 +78,13 @@ export function CommandPalette({ isOpen, onClose }) {
       {/* Modal */}
       <div className="relative flex items-start justify-center pt-[15vh] px-4">
         <div
-          className="relative flex w-full max-w-lg flex-col overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-900/95 shadow-2xl backdrop-blur-xl max-h-[60vh] z-10"
+          className="relative flex w-full max-w-lg flex-col overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--card)]/95 shadow-2xl backdrop-blur-xl max-h-[60vh] z-10"
           onClick={(e) => e.stopPropagation()}
           style={{ animation: 'fade-up 0.2s cubic-bezier(0.16, 1, 0.3, 1)' }}
         >
           {/* Search */}
-          <div className="flex items-center gap-3 border-b border-neutral-800 px-4 py-3">
-            <FiSearch className="size-4 text-neutral-400 shrink-0" />
+          <div className="flex items-center gap-3 border-b border-[var(--line)] px-4 py-3">
+            <FiSearch className="size-4 text-[var(--soft)] shrink-0" />
             <input
               ref={inputRef}
               type="text"
@@ -92,9 +92,9 @@ export function CommandPalette({ isOpen, onClose }) {
               onChange={(e) => { setQuery(e.target.value); setSelectedIndex(0); }}
               onKeyDown={handleKeyDown}
               placeholder="Type a command or search..."
-              className="w-full bg-transparent text-sm text-neutral-100 placeholder:text-neutral-500 outline-none border-none"
+              className="w-full bg-transparent text-sm text-[var(--fg)] placeholder:text-[var(--soft)] outline-none border-none"
             />
-            <kbd className="hidden sm:inline-block rounded-md border border-neutral-700 bg-neutral-800 px-1.5 py-0.5 font-mono text-[10px] text-neutral-400">
+            <kbd className="hidden sm:inline-block rounded-md border border-[var(--line)] bg-[var(--chip)] px-1.5 py-0.5 font-mono text-[10px] text-[var(--soft)]">
               ESC
             </kbd>
           </div>
@@ -102,7 +102,7 @@ export function CommandPalette({ isOpen, onClose }) {
           {/* Results */}
           <div className="onyx-scroll overflow-y-auto p-2 max-h-[45vh]">
             {filtered.length === 0 ? (
-              <div className="p-6 text-center text-xs font-mono text-neutral-500">No results for "{query}"</div>
+              <div className="p-6 text-center text-xs font-mono text-[var(--soft)]">No results for "{query}"</div>
             ) : (
               Object.entries(
                 filtered.reduce((groups, item) => {
@@ -111,7 +111,7 @@ export function CommandPalette({ isOpen, onClose }) {
                 }, {})
               ).map(([category, items]) => (
                 <div key={category}>
-                  <div className="px-3 pt-3 pb-1 font-mono text-[10px] uppercase tracking-widest text-neutral-600">{category}</div>
+                  <div className="px-3 pt-3 pb-1 font-mono text-[10px] uppercase tracking-widest text-[var(--soft)]">{category}</div>
                   {items.map((item) => {
                     const globalIdx = filtered.indexOf(item);
                     const isSelected = globalIdx === selectedIndex;
@@ -123,15 +123,15 @@ export function CommandPalette({ isOpen, onClose }) {
                         onMouseEnter={() => setSelectedIndex(globalIdx)}
                         className={`flex items-center gap-3.5 rounded-xl px-3.5 py-2.5 text-left w-full transition-all duration-150 border cursor-pointer ${
                           isSelected
-                            ? 'border-neutral-700 bg-neutral-800/80 text-white'
-                            : 'border-transparent text-neutral-300 hover:bg-neutral-800/40'
+                            ? 'border-[var(--soft)] bg-[var(--chip)] text-[var(--fg)]'
+                            : 'border-transparent text-[var(--muted)] hover:bg-[var(--hover)]'
                         }`}
                       >
-                        <div className="text-neutral-400 shrink-0">{item.icon}</div>
+                        <div className="text-[var(--soft)] shrink-0">{item.icon}</div>
                         <div className="flex-1 overflow-hidden">
                           <div className="text-[13px] font-medium">{item.title}</div>
                           {item.subtitle && (
-                            <div className="text-[11px] text-neutral-500 truncate">{item.subtitle}</div>
+                            <div className="text-[11px] text-[var(--soft)] truncate">{item.subtitle}</div>
                           )}
                         </div>
                       </button>
@@ -143,7 +143,7 @@ export function CommandPalette({ isOpen, onClose }) {
           </div>
 
           {/* Footer */}
-          <div className="flex items-center justify-between border-t border-neutral-800 bg-neutral-950/60 px-4 py-2.5 font-mono text-[9px] text-neutral-500">
+          <div className="flex items-center justify-between border-t border-[var(--line)] bg-[var(--surface)] px-4 py-2.5 font-mono text-[9px] text-[var(--soft)]">
             <div className="flex items-center gap-3">
               <span>↑↓ Navigate</span>
               <span>↵ Select</span>

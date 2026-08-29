@@ -3,9 +3,9 @@ import { Container } from './Container';
 import { portfolioData } from '../data/portfolioData';
 import { FiSearch, FiSun, FiMoon } from 'react-icons/fi';
 
-export function Navbar({ onOpenPalette }) {
+export function Navbar({ onOpenPalette, theme, onToggleTheme }) {
   const [activeSection, setActiveSection] = useState('home');
-  const [isDark, setIsDark] = useState(true);
+  const isDark = theme === 'dark';
 
   const navItems = [
     { label: 'Home', id: 'home' },
@@ -101,8 +101,9 @@ export function Navbar({ onOpenPalette }) {
           {/* Theme Toggle Button */}
           <button
             type="button"
-            onClick={() => setIsDark(!isDark)}
+            onClick={onToggleTheme}
             aria-label="Toggle theme"
+            title={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
             className="grid size-7 place-items-center rounded-full border border-[var(--line)] text-[var(--muted)] transition-all duration-300 hover:rotate-45 hover:text-[var(--fg)] hover:border-[var(--soft)] cursor-pointer"
           >
             {isDark ? <FiSun className="size-3.5" /> : <FiMoon className="size-3.5" />}
@@ -123,8 +124,9 @@ export function Navbar({ onOpenPalette }) {
           )}
           <button
             type="button"
-            onClick={() => setIsDark(!isDark)}
+            onClick={onToggleTheme}
             aria-label="Toggle theme"
+            title={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
             className="grid size-8 place-items-center rounded-full border border-[var(--line)] text-[var(--muted)] hover:text-[var(--fg)] cursor-pointer"
           >
             {isDark ? <FiSun className="size-4" /> : <FiMoon className="size-4" />}

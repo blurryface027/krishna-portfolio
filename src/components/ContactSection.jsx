@@ -25,7 +25,7 @@ export function ContactSection() {
                 href={link.href}
                 target={link.href.startsWith('mailto:') ? undefined : '_blank'}
                 rel="noopener noreferrer"
-                className={`group flex items-center justify-center gap-2.5 border-b border-r border-[var(--line)] px-4 py-4 text-[13px] font-medium transition-colors duration-200 hover:bg-[var(--hover)] ${
+                className={`group flex items-center justify-center gap-2.5 border-b border-r border-[var(--line)] px-4 py-3.5 text-[12px] font-medium transition-colors duration-200 hover:bg-[var(--hover)] ${
                   i % 2 === 1 ? 'border-r-0 sm:border-r' : ''
                 } ${i >= 4 ? 'border-b-0' : ''} sm:border-b-0 sm:last:border-r-0 ${
                   i === 4 ? 'col-span-2 border-r-0 sm:col-span-1 sm:border-r' : ''

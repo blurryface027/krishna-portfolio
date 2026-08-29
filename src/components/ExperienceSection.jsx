@@ -33,7 +33,7 @@ export function ExperienceSection() {
               <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
                 <div className="space-y-1.5">
                   <div className="flex items-center gap-2">
-                    <span className="grid size-7 place-items-center rounded-lg border border-white/10 bg-white/5 text-[var(--fg)]">
+                    <span className="grid size-7 place-items-center rounded-lg border border-[var(--line)] bg-[var(--chip)] text-[var(--fg)]">
                       <FiAward size={14} />
                     </span>
                     <h3 className="font-serif text-xl text-[var(--fg)] tracking-wide">

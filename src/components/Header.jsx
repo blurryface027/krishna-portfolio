@@ -9,18 +9,22 @@ export function Header({ onOpenPalette }) {
 
   // Profile image switcher state
   const [pfpIdx, setPfpIdx] = useState(0);
-  const [pfpFade, setPfpFade] = useState(true);
   const [isSpinning, setIsSpinning] = useState(false);
+
+  // Preload all profile images into browser memory on mount for instant 0ms switching
+  useEffect(() => {
+    portfolioData.profileImages.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, []);
 
   const handleNextPfp = (e) => {
     if (e) e.stopPropagation();
     setIsSpinning(true);
-    setPfpFade(false);
-    setTimeout(() => {
-      setPfpIdx((prev) => (prev + 1) % portfolioData.profileImages.length);
-      setPfpFade(true);
-      setTimeout(() => setIsSpinning(false), 300);
-    }, 150);
+    // Instantaneous switch in real-time without artificial delay
+    setPfpIdx((prev) => (prev + 1) % portfolioData.profileImages.length);
+    setTimeout(() => setIsSpinning(false), 400);
   };
 
   useEffect(() => {
@@ -38,7 +42,7 @@ export function Header({ onOpenPalette }) {
     <>
       {/* Banner Image */}
       <Container className="px-2 pt-2 sm:px-3 sm:pt-3">
-        <div className="relative h-36 overflow-hidden rounded-xl bg-neutral-950 sm:h-44 border border-[var(--line)]">
+        <div className="relative h-36 overflow-hidden rounded-xl bg-[var(--card)] sm:h-44 border border-[var(--line)]">
           <img
             src={portfolioData.bannerImage}
             alt="Banner Cover"
@@ -72,17 +76,16 @@ export function Header({ onOpenPalette }) {
               title="Click to switch profile avatar"
             >
               <img
+                key={pfpIdx}
                 src={portfolioData.profileImages[pfpIdx]}
                 alt={portfolioData.name}
                 loading="eager"
-                className={`h-full w-full object-cover pointer-events-none transition-opacity duration-300 ${
-                  pfpFade ? 'opacity-100' : 'opacity-0'
-                }`}
+                className="h-full w-full object-cover pointer-events-none transition-all duration-200 animate-fade-in"
               />
               {/* Scanline overlay on image */}
-              <div className="absolute inset-0 pointer-events-none rounded-xl overflow-hidden opacity-[0.18] group-hover:opacity-30 transition-opacity"
+              <div className="absolute inset-0 pointer-events-none rounded-xl overflow-hidden opacity-[0.15] group-hover:opacity-25 transition-opacity"
                 style={{
-                  background: 'linear-gradient(rgba(18,16,16,0) 50%, rgba(0,0,0,0.25) 50%)',
+                  background: 'linear-gradient(rgba(18,16,16,0) 50%, rgba(0,0,0,0.2) 50%)',
                   backgroundSize: '100% 4px'
                 }}
               />
@@ -91,7 +94,7 @@ export function Header({ onOpenPalette }) {
               <button
                 onClick={handleNextPfp}
                 title="Switch Avatar"
-                className="absolute bottom-1 right-1 z-20 flex size-6 items-center justify-center rounded-lg border border-white/20 bg-black/85 text-white shadow-lg backdrop-blur-md transition-all duration-200 hover:scale-110 hover:border-white hover:bg-black active:scale-95 cursor-pointer"
+                className="absolute bottom-1 right-1 z-20 flex size-6 items-center justify-center rounded-lg border border-[var(--line)] bg-[var(--card)]/90 text-[var(--fg)] shadow-lg backdrop-blur-md transition-all duration-200 hover:scale-110 hover:border-[var(--fg)] hover:bg-[var(--chip)] active:scale-95 cursor-pointer"
               >
                 <FiRefreshCw className={`size-3 transition-transform duration-500 ${isSpinning ? 'rotate-180' : ''}`} />
               </button>

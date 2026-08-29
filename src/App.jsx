@@ -11,6 +11,26 @@ import { CommandPalette } from './components/CommandPalette';
 
 export default function App() {
   const [paletteOpen, setPaletteOpen] = useState(false);
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem('theme') || 'dark';
+  });
+
+  // Sync theme with html root element
+  useEffect(() => {
+    const root = document.documentElement;
+    if (theme === 'light') {
+      root.classList.add('light');
+      root.classList.remove('dark');
+    } else {
+      root.classList.add('dark');
+      root.classList.remove('light');
+    }
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+  };
 
   // Cmd/Ctrl + K
   useEffect(() => {
@@ -27,7 +47,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[var(--bg)] font-sans text-[var(--fg)] antialiased transition-colors duration-300 relative">
       {/* Sticky Top Header Navigation (reference: O2) */}
-      <Navbar onOpenPalette={() => setPaletteOpen(true)} />
+      <Navbar theme={theme} onToggleTheme={toggleTheme} onOpenPalette={() => setPaletteOpen(true)} />
 
       {/* Floating Right Sidebar Index (reference: z2) */}
       <SidebarIndex />
