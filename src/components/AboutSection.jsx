@@ -7,7 +7,7 @@ import { portfolioData } from '../data/portfolioData';
 
 export function AboutSection() {
   return (
-    <div id="about">
+    <div id="about" className="scroll-mt-20">
       <SectionHeader title="About" />
       <Container className="px-6 py-7 sm:px-8 space-y-4">
         {portfolioData.about.map((text, idx) => (

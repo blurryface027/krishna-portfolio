@@ -4,7 +4,7 @@ const indexItems = [
   { id: 'about', label: 'About' },
   { id: 'projects', label: 'Projects' },
   { id: 'skills', label: 'Skills' },
-  { id: 'experience', label: 'Education' },
+  { id: 'education', label: 'Education' },
   { id: 'contact', label: 'Contact' },
 ];
 
@@ -13,13 +13,13 @@ export function SidebarIndex() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + 220;
+      const scrollPosition = window.scrollY + 250;
 
       for (let i = indexItems.length - 1; i >= 0; i--) {
         const item = indexItems[i];
-        const el = document.getElementById(item.id);
+        const el = document.getElementById(item.id) || (item.id === 'education' ? document.getElementById('experience') : null);
         if (el) {
-          const top = el.offsetTop;
+          const top = el.getBoundingClientRect().top + window.scrollY;
           if (scrollPosition >= top) {
             setActiveId(item.id);
             break;
@@ -35,7 +35,7 @@ export function SidebarIndex() {
 
   const handleClick = (e, id) => {
     e.preventDefault();
-    const el = document.getElementById(id);
+    const el = document.getElementById(id) || (id === 'education' ? document.getElementById('experience') : null);
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
     }

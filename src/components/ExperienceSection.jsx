@@ -17,7 +17,8 @@ export function ExperienceSection() {
   ];
 
   return (
-    <div id="education">
+    <div id="education" className="scroll-mt-20 relative">
+      <span id="experience" className="absolute -top-20 block" />
       <SectionHeader title="Education" />
       <Container className="px-6 py-7 sm:px-8">
         {edu && (

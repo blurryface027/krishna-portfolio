@@ -70,7 +70,7 @@ export function Footer() {
         </p>
         <a
           href="mailto:krishna158310@gmail.com"
-          className="group mt-4 inline-flex items-center gap-2 rounded-lg border border-[var(--line)] bg-[var(--fg)] px-4 py-2 text-[12.5px] font-medium text-[var(--bg)] transition-all duration-200 hover:border-[var(--soft)] hover:bg-[var(--fg)]/90 hover:-translate-y-0.5 shadow-sm"
+          className="group mt-4 inline-flex items-center gap-2 rounded-lg border border-[var(--fg)] bg-[var(--bg)] px-4 py-2 text-[12.5px] font-medium text-[var(--fg)] transition-all duration-200 hover:border-white hover:bg-[var(--hover)] hover:-translate-y-0.5 shadow-sm cursor-pointer"
         >
           Let's Talk
           <FiArrowRight className="size-3.5 transition-transform duration-200 group-hover:translate-x-1" />

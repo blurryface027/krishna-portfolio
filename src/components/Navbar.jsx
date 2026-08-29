@@ -10,14 +10,14 @@ export function Navbar({ onOpenPalette, theme, onToggleTheme }) {
   const navItems = [
     { label: 'Home', id: 'home' },
     { label: 'Projects', id: 'projects' },
-    { label: 'Experience', id: 'experience' },
+    { label: 'Education', id: 'education' },
     { label: 'Contact', id: 'contact' },
   ];
 
   // Scroll spy to highlight active nav link
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPos = window.scrollY + 100;
+      const scrollPos = window.scrollY + 250;
 
       for (let i = navItems.length - 1; i >= 0; i--) {
         const item = navItems[i];
@@ -27,10 +27,13 @@ export function Navbar({ onOpenPalette, theme, onToggleTheme }) {
             break;
           }
         } else {
-          const el = document.getElementById(item.id);
-          if (el && el.offsetTop <= scrollPos) {
-            setActiveSection(item.id);
-            break;
+          const el = document.getElementById(item.id) || (item.id === 'education' ? document.getElementById('experience') : null);
+          if (el) {
+            const top = el.getBoundingClientRect().top + window.scrollY;
+            if (scrollPos >= top) {
+              setActiveSection(item.id);
+              break;
+            }
           }
         }
       }
@@ -45,7 +48,7 @@ export function Navbar({ onOpenPalette, theme, onToggleTheme }) {
     if (id === 'home') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      const el = document.getElementById(id);
+      const el = document.getElementById(id) || (id === 'education' ? document.getElementById('experience') : null);
       if (el) el.scrollIntoView({ behavior: 'smooth' });
     }
   };

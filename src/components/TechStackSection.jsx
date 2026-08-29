@@ -36,7 +36,7 @@ export function TechStackSection() {
     : groupedSkills.filter((g) => g.category === activeTab);
 
   return (
-    <div id="skills">
+    <div id="skills" className="scroll-mt-20">
       <SectionHeader title="Tech Stack" />
       <Container className="px-6 py-7 sm:px-8 space-y-6">
         {/* Flat Minimal Filter Tabs - No heavy rounded box */}

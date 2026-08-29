@@ -14,7 +14,7 @@ const contactLinks = [
 
 export function ContactSection() {
   return (
-    <div id="contact" className="w-full border-t border-[var(--line)]">
+    <div id="contact" className="w-full border-t border-[var(--line)] scroll-mt-20">
       <Container>
         <div className="grid grid-cols-2 sm:grid-cols-5 border-b border-[var(--line)] sm:border-b-0">
           {contactLinks.map((link, i) => {

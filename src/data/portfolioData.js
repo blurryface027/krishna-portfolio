@@ -18,7 +18,7 @@ export const portfolioData = {
   email: "krishna158310@gmail.com",
   website: "https://kopscloud.in",
   about: [
-    "Hey, I'm Krishan Mohan Sharma, a DevOps and Cloud Enthusiast passionate about building production-grade CI/CD pipelines, cloud-native infrastructure on AWS, and automated container orchestration with Kubernetes.",
+    "Hey, I'm Krishna, a DevOps and Cloud Enthusiast passionate about building production-grade CI/CD pipelines, cloud-native infrastructure on AWS, and automated container orchestration with Kubernetes.",
     "I specialize in architecting secure DevSecOps pipelines using Jenkins, Argo CD, Helm, SonarQube, Trivy, and Docker Scout, paired with end-to-end monitoring using Prometheus & Grafana.",
     "Daily Linux power user (Ubuntu & Arch Linux) with hands-on experience writing Infrastructure as Code using Terraform, Bash scripting, and managing containerized microservices."
   ],

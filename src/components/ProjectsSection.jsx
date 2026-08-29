@@ -7,7 +7,7 @@ import { FiGithub, FiExternalLink, FiFolder } from 'react-icons/fi';
 
 export function ProjectsSection() {
   return (
-    <div id="projects">
+    <div id="projects" className="scroll-mt-20">
       <SectionHeader title="Projects" />
 
       <Container className="px-6 py-6 sm:px-8">

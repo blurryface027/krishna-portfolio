@@ -34,7 +34,7 @@ export function CommandPalette({ isOpen, onClose }) {
   };
 
   const scrollTo = (id) => {
-    const el = document.getElementById(id);
+    const el = document.getElementById(id) || (id === 'education' || id === 'experience' ? document.getElementById('education') || document.getElementById('experience') : null);
     if (el) el.scrollIntoView({ behavior: 'smooth' });
     onClose();
   };
@@ -43,7 +43,7 @@ export function CommandPalette({ isOpen, onClose }) {
     { id: 'nav-about', category: 'Navigation', title: 'Go to About', icon: <FiFolder size={16} />, action: () => scrollTo('about') },
     { id: 'nav-projects', category: 'Navigation', title: 'Go to Projects', icon: <FiFolder size={16} />, action: () => scrollTo('projects') },
     { id: 'nav-skills', category: 'Navigation', title: 'Go to Tech Stack', icon: <FiFolder size={16} />, action: () => scrollTo('skills') },
-    { id: 'nav-exp', category: 'Navigation', title: 'Go to Experience', icon: <FiFolder size={16} />, action: () => scrollTo('experience') },
+    { id: 'nav-edu', category: 'Navigation', title: 'Go to Education', icon: <FiFolder size={16} />, action: () => scrollTo('education') },
     { id: 'nav-contact', category: 'Navigation', title: 'Go to Contact', icon: <FiFolder size={16} />, action: () => scrollTo('contact') },
     ...portfolioData.projects.map((p) => ({
       id: `proj-${p.title}`, category: 'Projects', title: `View ${p.title}`, subtitle: p.blurb,
